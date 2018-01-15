@@ -7,4 +7,4 @@
 - If someone wants to continue / improve or release this plugin, I am open to discussion about doing so.
 
 ## License
-**This plugin is licensed under the [GNU Affero General Public License v3.0](https://choosealicense.com/licenses/agpl-3.0/) For more information visit the [license.md](/license.md) file in the root of this directory**
+**This plugin is licensed under the [GNU Affero General Public License v3.0](https://choosealicense.com/licenses/agpl-3.0/) For more information visit the [LICENSE.md](/LICENSE.md) file in the root of this directory**
