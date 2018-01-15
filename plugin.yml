@@ -1,0 +1,9 @@
+name: SupplyFlares
+version: 0.6b
+main: com.dachiimp.supplyflares.SupplyFlares
+author: DaChiimp
+commands:
+    flares:
+        description: Generic base command.
+        aliases: [supplycrate, supplyflares, sc,sf]
+softdepend: [Factions,ClearLagg]

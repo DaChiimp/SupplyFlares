@@ -1,0 +1,141 @@
+############################################################################################################################################################
+#####################                                    ##########################################                                    #####################
+###################                VARIABLES               ######################################                  NOTES                 ###################
+#####################                                    ##########################################                                    #####################
+############################################################################################################################################################
+##                             Player Variables:                            ####                         Writing In This Config:                          ##
+##                          %player% = player name                          ####          I suggest using http://codebeautify.org/yaml-validator          ##
+##     %playerDisplay% = player's display name (with color formatting)      ####            otherwise you may break your config and the plugin            ##
+############################################################################################################################################################
+##                             Crate Variables:                             ####                            For Plugin Support:                           ##
+##                     %crate% = crate type (singleword)                    ####                 https://tawk.to/DaChiimp.Spigot.Support                  ##
+##        %crateDisplay% = crate displayName (with color formatting)        ####          Where you can live chat / leave a message (if offline)          ##
+############################################################################################################################################################
+
+# Will generate a random int between the 2 numbers. if these are the same it will just use the value
+# Requires randomCrateSpawnEventInterval to be greater than 0
+randomCrateMinToSpawn: 1
+randomCrateMaxToSpawn: 2
+
+# Every interval if there aren't this many players online then they wont spawn. Set to 0 to spawn no matter what
+randomCrateSpawnMinRequiredPlayers: 5
+
+# TODO: Add ids to manually spawn by id
+
+randomCrateSpawnArray:
+# [crateName,chance,baseX,baseZ,maxRand,minRand,world,id]
+# Note: id has to be unique otherwise it will only take the first one with the same id
+- "[example,50,0,0,500,50,world,rand1]"
+
+crates:
+    example:
+        type: "INSTANT" #Not used yet but will be :)
+        crateDisplay: "&b&lExample &2&lCrate"
+        lores:
+            - "&4I love the example crate!"
+            - "&2It's awesome"
+        commandsToSelect: 3
+        commandSelect:
+            # - [type,parameters,chance,commandsToRun(command)]
+            # - type = [conCmd,plyCmd,say] == [Console Command, Player Command, Player Say In Chat (Will get color formatting)]
+            # - parameters = [conCmd,plyCmd,say] == [Command to run, Command to run, What will they say in chat?]
+            # - chance = 100% = max percentage | will generate %commandsToSelect% numbers and if it's in range of the below will do that command
+            # - commandsToRun(command) = Will also run the command here like it was below. This allows annoucing what you get
+            # For e.g [plyMsg;%prefix% &7You recieved a &cdiamond_sword] will send a player message saying 'You recieved a diamond_sword'
+            # Allowed types = [conCmd,broadcast,plyMsg]
+            # FOR THE COMMAND TO RUN WITH THE BASE COMMAND ([notthis,notthis,notthis[this]]) MAKE SURE TO SEPERATE THE COMMAND TYPE AND THE COMMAND TO RUN YOU USE ; HERE INSTEAD OF ,
+            # FOR THE COMMAND TO RUN WITH THE BASE COMMAND ([notthis,notthis,notthis[this]]) MAKE SURE TO SEPERATE THE COMMAND TYPE AND THE COMMAND TO RUN YOU USE ; HERE INSTEAD OF ,
+            - "[conCmd,give %player% diamond_sword 1,50,[plyMsg;%prefix% &7You recieved a &cdiamond_sword]]"
+            - "[conCmd,xp give %player% 30l,15,[plyMsg;%prefix% &7You recieved &c30 levels]]"
+            - "[conCmd,xp give %player% 5l,20,[plyMsg;%prefix% &7You recieved &c5 levels]]"
+            - "[conCmd,bc %player% is so cool,25,[]]"
+            - "[say,&4&lI am so cool!,5,[]]"
+        commandsToRun:
+            # - these will always run when a player redeems the crate
+            # - [type,parameters]
+            # - type = [conCmd,broadcast,plyMsg] == [Console Command, Broadcast in chat (without essentials prefix)), private message to player]
+            # - parameters = [conCmd,broadcast,plyMsg] == [Command to run, Message to broadcast, Message to send to player]
+            - "[conCmd,bc don't forget to donate @ www.yourlink.com for your supply crate!]"
+            - "[broadcast,%prefix% &c%player% &7received the %crateDisplay%]"
+            - "[plyMsg,%prefix% &7Thank you for donating!]"
+        disabled_worlds:
+            - "aniceworld"
+            - "someotherniceworld"
+    example2:
+        type: "INSTANT" #Not used yet but will be :)
+        crateDisplay: "&aExample Crate &8[&cRare&8]&r"
+        lores:
+            - "&8&oYou will receive &c&o2 &8&oof the following:"
+            - ""
+            - "&7Diamond Sword / Sharp 4 Fire Aspect 2"
+            - "&7Bow / Power 4 Flame 1"
+            - "&7Diamond Pickaxe / Efficiency 4 Unbreaking 3"
+            - "&716x Golden Apple"
+            - "&764x Diamond"
+            - "&9Bow / Power 4 Flame 1 Infinity 1 Punch 2"
+            - "&9Diamond Pickaxe / Efficiency 4 Unbreaking 3 Fortune 3"
+            - "&9Diamond Pickaxe / Efficiency 5 Unbreaking 3 Silk Touch 1"
+            - "&dHorse Spawn Egg"
+            - "&dSaddle"
+            - "&d128x Golden Apple"
+            - "&4Diamond Horse Armor"
+            - "&45x Horse Spawn Egg"
+            - "&eOr An Exceedingly Rare Special Item!"
+        commandsToSelect: 2
+        commandSelect:
+            # - [type,parameters,chance,commandsToRun(command)]
+            # - type = [conCmd,plyCmd,say] == [Console Command, Player Command, Player Say In Chat (Will get color formatting)]
+            # - parameters = [conCmd,plyCmd,say] == [Command to run, Command to run, What will they say in chat?]
+            # - chance = 100% = max percentage | will generate %commandsToSelect% numbers and if it's in range of the below will do that command
+            # - commandsToRun(command) = Will also run the command here like it was below. This allows annoucing what you get
+            # For e.g [plyMsg;%prefix% &7You recieved a &cdiamond_sword] will send a player message saying 'You recieved a diamond_sword'
+            # Allowed types = [conCmd,broadcast,plyMsg]
+            # FOR THE COMMAND TO RUN WITH THE BASE COMMAND ([notthis,notthis,notthis[this]]) MAKE SURE TO SEPERATE THE COMMAND TYPE AND THE COMMAND TO RUN YOU USE ; HERE INSTEAD OF ,
+            # FOR THE COMMAND TO RUN WITH THE BASE COMMAND ([notthis,notthis,notthis[this]]) MAKE SURE TO SEPERATE THE COMMAND TYPE AND THE COMMAND TO RUN YOU USE ; HERE INSTEAD OF ,
+            # ///// Tier 1 = 50% Chance /////
+            - "[conCmd,give %player% diamond_sword 1 16:4 20:2,50,[plyMsg;%prefix% &7You recieved &7a diamond_sword]]"
+            - "[conCmd,give %player% bow 1 48:4 50:1,50,[plyMsg;%prefix% &7You recieved &7a bow]]"
+            - "[conCmd,give %player% dpickaxe 1 32:4 34:3,50,[plyMsg;%prefix% &7You recieved &7a pickaxe]]"
+            - "[conCmd,give %player% golden_apple:1 16,20,[plyMsg;%prefix% &7You recieved &716 golden apples]]"
+            - "[conCmd,give %player% diamond 64,20,[plyMsg;%prefix% &7You recieved &764 diamonds]]"
+            # ///// Tier 2 = 20% Chance /////
+            - "[conCmd,give %player% bow 1 48:4 50:1 49:1 51:1,20,[plyMsg;%prefix% &7You recieved &9a bow]]"
+            - "[conCmd,give %player% dpickaxe 1 32:4 34:3 35:1,20,[plyMsg;%prefix% &7You recieved &9a pickaxe]]"
+            - "[conCmd,give %player% dpickaxe 1 32:5 34:3 35:1 33:1,20,[plyMsg;%prefix% &7You recieved &9a pickaxe]]"
+            # ///// Tier 3 = 10% Chance /////
+            - "[conCmd,give %player% 383:100 1,10,[plyMsg;%prefix% &7You recieved &da spawn egg]]"
+            - "[conCmd,give %player% 329 1,10,[plyMsg;%prefix% &7You recieved &da saddle]]"
+            - "[conCmd,give %player% golden_apple:1 128,10,[plyMsg;%prefix% &7You recieved &d128x golden apples]]"
+            # ///// Tier 4 = 5% Chance /////
+            - "[conCmd,give %player% 419 1,5,[plyMsg;%prefix% &7You recieved &4horse armor]]"
+            - "[conCmd,give %player% 383 5,5,[plyMsg;%prefix% &7You recieved &45x spawn eggs]]"
+            # ///// Tier 5 = 2% Chance /////
+            - "[conCmd,give %player% diamond_sword 1 16:5 20:3,2,[plyMsg;%prefix% &7You recieved a &ediamond_sword]]"
+        disabled_worlds:
+            - "aniceworld"
+            - "someotherniceworld"
+options:
+    spawnType: "DROP"
+    # DROP = spawns minecart and falls and when landed turns to chest | INSTANT = spawns chest on the ground
+    claimOnlyInWarzone: "true"
+    # Can only be spawned in a factions warzone (requires factions plugin)
+    minRadius: 5
+    # It will add a random integer between minRadius and maxRadius to x and one to z co-ordinates
+    maxRadius: 30
+    # It will add a random integer between minRadius and maxRadius to x and one to z co-ordinates
+    vicinityMinRadius: 5
+    # It will add a random integer between vicnityMinRadius and vicnityMaxRadius to x and one to z co-ordinates
+    vicinityMaxRadius: 15
+    # It will add a random integer between minRadius and maxRadius to x and one to z co-ordinates
+    listCooldown: 60
+    # Can use /flares list every of this integer (in seconds)
+    spawnHeight: 200
+    # Height at which the minecart spawns at (requires spawnType to be DROP) (above the player)
+    crateCooldown: 10
+    # Cooldown (IN SECONDS) for a player to spawn another crate after using one - set to 0 to use it straight after their crate lands
+    fireworkInterval: 30
+    # Interval (IN SECONDS) in which a firework is shot out of the chest to show it's position
+    giveMap: "false"
+    # Give the player a map once their chest has reached the ground - This will show a 1 block pixel of the block
+    randomCrateSpawnEventInterval: 0
+    # (In Seconds) Crates will randomly spawn every of this interval. Set it to a value less than 1 to disable. This will only update on a plugin reload not the /flares reload command.
